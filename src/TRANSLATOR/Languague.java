@@ -56,6 +56,18 @@ public class Languague {
         
         Alfabeto.put(" ", "ESPACIO");
         
+        Alfabeto.put(".","000010");
+        Alfabeto.put(";","001010");
+        Alfabeto.put(":","001100");
+        Alfabeto.put(",","001000");
+        Alfabeto.put("?","001001");
+        Alfabeto.put("!","001110");
+        Alfabeto.put("(","101001");
+        Alfabeto.put(")","010110");
+        Alfabeto.put("'","001011");
+        Alfabeto.put("-","000011");
+        
+        
         
         
         
