@@ -5,42 +5,99 @@
  */
 package TRANSLATOR;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JButton;
+
 
 
 /**
  *
  * @author Marcos
  */
-public class Translator {
+public class Translator implements Runnable {
     
-    public String[] letters;
-    public Languague lan;
+    private final String[] letters;
+    private final Languague lan;
+    private final int threadSleepTimeMillis;
+    private final String line;
+    private final JButton boton;
     
-    public Translator(String text){
-    this.letters = new String[text.length()];
+    
+    
+    public Translator(String line, int threadSleepTimeMillis, JButton boton){
+    this.line = line;
+    this.letters = new String[line.length()];
     this.lan = new Languague();
+    this.threadSleepTimeMillis = threadSleepTimeMillis;
+    this.boton = boton;
     
     
     }
     
     
-    public void lineToBraille(String line)
+    public void lineToBraille()
     {
-        if(!line.isEmpty())
+        
+        
+        if(!this.line.isEmpty())
         {
            for(int i=0; i<line.length(); i++)
            {
-               this.letters[i] =String.valueOf(line.charAt(i));
+               this.letters[i] =String.valueOf(line.charAt(i)).toLowerCase();
            }
            
            for(int i=0; i< this.letters.length; i++)
            {
-               System.out.println(letters[i]+"= "+ lan.Alfabeto.get(letters[i]));
+               try {
+                   Thread.sleep(this.threadSleepTimeMillis);
+                    System.out.println(letters[i]+"= "+ lan.Alfabeto.get(letters[i]));
+                   
+               } catch (InterruptedException ex) {
+                   System.out.println(ex.getMessage());
+               }
+              
            }
            
         }
         
     
     }
+
+   
+    @Override
+    public void run() {
+        
+            
+        
+         if(!line.isEmpty())
+        {
+            
+            boton.setText("Traduciendo a Braille...");
+            boton.setEnabled(false);
+           for(int i=0; i<line.length(); i++)
+           {
+               this.letters[i] =String.valueOf(line.charAt(i)).toLowerCase();
+           }
+            try {
+            for (String letter : this.letters) {
+               
+                    Thread.sleep(this.threadSleepTimeMillis);
+                    System.out.println(letter + "= " + lan.Alfabeto.get(letter));
+                }
+            
+             boton.setText("Mandar contenido a interfaz Braille");
+             boton.setEnabled(true);
+                
+             }    
+                
+                
+                catch (InterruptedException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            
+    }
+
     
+}
 }

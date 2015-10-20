@@ -54,7 +54,7 @@ public class Languague {
         Alfabeto.put("y", "110111");
         Alfabeto.put("z", "100111");
         
-        Alfabeto.put(" ", "ESPACIO");
+        Alfabeto.put(" ", "000000");
         
         Alfabeto.put(".","000010");
         Alfabeto.put(";","001010");
