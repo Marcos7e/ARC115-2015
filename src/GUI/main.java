@@ -7,6 +7,9 @@ package GUI;
 
 import HELPERS.WaitGif;
 import TRANSLATOR.Translator;
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -14,9 +17,12 @@ import TRANSLATOR.Translator;
  * @author Marcos
  */
 public class main extends javax.swing.JFrame {
-
-  
     
+    JFileChooser seleccionado = new JFileChooser();
+    File archivo;
+    byte[] bytesImg;
+    archivos archivos = new archivos();
+ 
     /**
      * Creates new form main
      */
@@ -193,14 +199,29 @@ public class main extends javax.swing.JFrame {
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setText("Nueva Lectura");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem2.setText("Guardar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem3.setText("Abrir");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
@@ -246,7 +267,8 @@ public class main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
+        //Salir 
+        System.exit(0);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void btn_send_to_BrailleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_send_to_BrailleActionPerformed
@@ -258,6 +280,42 @@ public class main extends javax.swing.JFrame {
      
       
     }//GEN-LAST:event_btn_send_to_BrailleActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+         jTexttoBraille.setText("");
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // 'Guardar en .txt
+        if(seleccionado.showDialog(null, "Guardar") == JFileChooser.APPROVE_OPTION){
+            archivo = seleccionado.getSelectedFile();
+            if(archivo.getName().endsWith("txt")){
+                String contenido = jTexttoBraille.getText();
+                String respuesta = archivos.GuardarATexto(archivo, contenido);
+                if(respuesta!=null){
+                    JOptionPane.showMessageDialog(null, respuesta);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Error al guardar texto.");
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Escribit con extensión .txt");
+            }
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // 'Abrir'
+          if(seleccionado.showDialog(null, "Abrir") == JFileChooser.APPROVE_OPTION){
+            archivo = seleccionado.getSelectedFile();
+            if(archivo.canRead()){
+                if(archivo.getName().endsWith("txt")){
+                    String contenido = archivos.AbrirATexto(archivo);
+                    jTexttoBraille.setText(contenido);
+                }
+            }
+        }
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
