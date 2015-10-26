@@ -20,7 +20,6 @@ public class main extends javax.swing.JFrame {
     
     JFileChooser seleccionado = new JFileChooser();
     File archivo;
-    byte[] bytesImg;
     archivos archivos = new archivos();
  
     /**
