@@ -37,7 +37,7 @@ public class Communication extends Thread {
     SerialPort serialPort;
     CommPortIdentifier puertoID = null;
 
-    public String puerto = "COM3";
+    public String puerto = "COM12";
  //   public String dir = "C:\\Users\\Marcos\\Documents\\NetBeansProjects\\dbmeter\\src";
     
     public int TIME_OUT = 0;
@@ -50,6 +50,9 @@ public class Communication extends Thread {
     public FileWriter fw = null;
     public FileReader fr = null;
     
+    public Communication()
+    {}
+    
      public Communication(String port, int data_rate, int time_out) {
         this.puerto = port;
         this.DATA_RATE = data_rate;
@@ -57,6 +60,7 @@ public class Communication extends Thread {
      //   this.dir = "C:\\Users\\Marcos\\Documents\\NetBeansProjects\\dbmeter\\src";
       //  this.archivo = new File(dir+"\\conData.txt");
     }
+     
     
      public Communication(String port, int data_rate, int time_out, String dir) {
         this.puerto = port;
@@ -133,6 +137,8 @@ public class Communication extends Thread {
             if (input.ready()) {
                 inputLine = input.readLine();
             }
+            else
+            {inputLine = "no estoy listo";}
 
         } catch (Exception e) {
             System.err.println("Excepción: " + e.getMessage());

@@ -6,6 +6,7 @@
 package ezbraille;
 
 import COM.Communication;
+import GUI.Configuracion_Inicial;
 
 /**
  *
@@ -17,8 +18,9 @@ public class EZBraille {
      * @param args the command line arguments
      */
     public static void main(String[] args)  {
-        NewJFrame jframe = new NewJFrame();
-        jframe.show();
+      
+        Configuracion_Inicial ci = new Configuracion_Inicial();
+        ci.show(true);
        
         
         

@@ -5,6 +5,7 @@
  */
 package TRANSLATOR;
 
+import COM.Communication;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -22,6 +23,8 @@ public class Translator implements Runnable {
     private final int threadSleepTimeMillis;
     private final String line;
     private final JButton boton;
+    public Communication com ;
+    public String respuestaArduino;
     
     
     
@@ -31,6 +34,7 @@ public class Translator implements Runnable {
     this.lan = new Languague();
     this.threadSleepTimeMillis = threadSleepTimeMillis;
     this.boton = boton;
+    this.com = new Communication("COM12", 9600, 1000);
     
     
     }
@@ -52,6 +56,7 @@ public class Translator implements Runnable {
                try {
                    Thread.sleep(this.threadSleepTimeMillis);
                     System.out.println(letters[i]+"= "+ lan.Alfabeto.get(letters[i]));
+                    com.sendData(letters[i]);
                    
                } catch (InterruptedException ex) {
                    System.out.println(ex.getMessage());
@@ -72,6 +77,7 @@ public class Translator implements Runnable {
         
          if(!line.isEmpty())
         {
+           com.InicializarConexion();
             
             boton.setText("Traduciendo a Braille...");
             boton.setEnabled(false);
@@ -84,10 +90,15 @@ public class Translator implements Runnable {
                
                     Thread.sleep(this.threadSleepTimeMillis);
                     System.out.println(letter + "= " + lan.Alfabeto.get(letter));
+                    com.sendData(letter);
+                    respuestaArduino = com.getData();
+                    System.out.println("Arduino says: "+respuestaArduino);
+                
                 }
             
              boton.setText("Mandar contenido a interfaz Braille");
              boton.setEnabled(true);
+             com.closeConnection();
                 
              }    
                 

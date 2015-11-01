@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import COM.connectionData;
 import HELPERS.WaitGif;
 import TRANSLATOR.Translator;
 import java.io.File;
@@ -21,12 +22,16 @@ public class main extends javax.swing.JFrame {
     JFileChooser seleccionado = new JFileChooser();
     File archivo;
     archivos archivos = new archivos();
- 
+  
+     
     /**
      * Creates new form main
      */
     public main() {
         initComponents();
+        
+        
+       
     }
 
     /**
@@ -81,10 +86,20 @@ public class main extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
 
         jButton1.setText("Leer Linea Anterior");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Leer Linea Siguiente");
 
         jButton3.setText("Detener");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         btn_send_to_Braille.setText("Mandar Contenido a Interfaz Braille");
         btn_send_to_Braille.addActionListener(new java.awt.event.ActionListener() {
@@ -271,9 +286,9 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void btn_send_to_BrailleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_send_to_BrailleActionPerformed
-      Runnable r = new Translator(jTexttoBraille.getText(), 1000, btn_send_to_Braille);
+      Runnable r = new Translator(jTexttoBraille.getText(), 200, btn_send_to_Braille);
       new Thread(r).start();
-      WaitGif wg = new WaitGif(WaitingPanel,waitlabel);
+    //  WaitGif wg = new WaitGif(WaitingPanel,waitlabel);
       
       
      
@@ -311,10 +326,18 @@ public class main extends javax.swing.JFrame {
                 if(archivo.getName().endsWith("txt")){
                     String contenido = archivos.AbrirATexto(archivo);
                     jTexttoBraille.setText(contenido);
+                   
                 }
             }
         }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
