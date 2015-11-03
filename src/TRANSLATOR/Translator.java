@@ -34,7 +34,7 @@ public class Translator implements Runnable {
     this.lan = new Languague();
     this.threadSleepTimeMillis = threadSleepTimeMillis;
     this.boton = boton;
-    this.com = new Communication("COM12", 9600, 1000);
+    this.com = new Communication("COM3", 9600, 1000);
     
     
     }
@@ -73,8 +73,7 @@ public class Translator implements Runnable {
     @Override
     public void run() {
         
-            
-        
+           
          if(!line.isEmpty())
         {
            com.InicializarConexion();
@@ -90,7 +89,7 @@ public class Translator implements Runnable {
                
                     Thread.sleep(this.threadSleepTimeMillis);
                     System.out.println(letter + "= " + lan.Alfabeto.get(letter));
-                    com.sendData(letter);
+                    com.sendData(lan.Alfabeto.get(letter));
                     respuestaArduino = com.getData();
                     System.out.println("Arduino says: "+respuestaArduino);
                 

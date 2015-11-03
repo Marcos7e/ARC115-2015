@@ -286,7 +286,7 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void btn_send_to_BrailleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_send_to_BrailleActionPerformed
-      Runnable r = new Translator(jTexttoBraille.getText(), 200, btn_send_to_Braille);
+      Runnable r = new Translator(jTexttoBraille.getText(), 500, btn_send_to_Braille);
       new Thread(r).start();
     //  WaitGif wg = new WaitGif(WaitingPanel,waitlabel);
       

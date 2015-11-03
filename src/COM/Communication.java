@@ -87,7 +87,7 @@ public class Communication extends Thread {
         Enumeration puertoEnum = CommPortIdentifier.getPortIdentifiers();
         while (puertoEnum.hasMoreElements()) {
             CommPortIdentifier actualPuertoID = (CommPortIdentifier) puertoEnum.nextElement();
-            System.out.println("Puerto Seleccionado: "+actualPuertoID.getName());
+            System.out.println("Puerto Encontrado: "+actualPuertoID.getName());
            
             //.....
             //Actualizando puerto predeterminado
@@ -98,7 +98,7 @@ public class Communication extends Thread {
         }
         //Si no se encontró ningun puerto disponible...
         if (puertoID == null) {
-            mostrarError("No se puede conectar al puerto");
+            mostrarError("No se encontro ningun puerto disponible");
             System.exit(ERROR);
             return;
         }
