@@ -78,11 +78,11 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-         con.sendData("y");
+         //con.sendData("y");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         con.sendData("n");
+     //    con.sendData("n");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

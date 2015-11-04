@@ -4,24 +4,25 @@
  * and open the template in the editor.
  */
 
-package GUI;
+package HELPERS;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.Date;
 
 /**
  *
  * @author Gaby
  */
-public class archivos {
+public class Archivos {
     
     FileInputStream entrada;
     FileOutputStream salida;
     File archivo;
     
-    public archivos(){
-        
+    public Archivos(){
+      
     }
     
      /*Abrir un archivo de texto*/

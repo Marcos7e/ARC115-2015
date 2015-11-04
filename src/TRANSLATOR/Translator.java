@@ -6,6 +6,7 @@
 package TRANSLATOR;
 
 import COM.Communication;
+import HELPERS.Emulation;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -25,15 +26,20 @@ public class Translator implements Runnable {
     private final JButton boton;
     public Communication com ;
     public String respuestaArduino;
+    public Emulation emu;
     
     
     
-    public Translator(String line, int threadSleepTimeMillis, JButton boton){
+    
+    public Translator(String line, int threadSleepTimeMillis, JButton boton, Emulation emu){
     this.line = line;
     this.letters = new String[line.length()];
     this.lan = new Languague();
     this.threadSleepTimeMillis = threadSleepTimeMillis;
     this.boton = boton;
+    this.emu =emu;
+    
+    
     this.com = new Communication("COM3", 9600, 1000);
     
     
@@ -89,6 +95,7 @@ public class Translator implements Runnable {
                
                     Thread.sleep(this.threadSleepTimeMillis);
                     System.out.println(letter + "= " + lan.Alfabeto.get(letter));
+                    emu.onRecibeData(lan.Alfabeto.get(letter));
                     com.sendData(lan.Alfabeto.get(letter));
                     respuestaArduino = com.getData();
                     System.out.println("Arduino says: "+respuestaArduino);
