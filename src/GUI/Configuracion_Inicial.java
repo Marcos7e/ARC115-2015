@@ -180,7 +180,12 @@ public class Configuracion_Inicial extends javax.swing.JFrame {
        {
        connectionData.setPort(jComboPort.getSelectedItem().toString());
        connectionData.setData_rate(Integer.parseInt(jComboBaud.getSelectedItem().toString()));
-       connectionData.setOut_time(Integer.parseInt(jTextOutTime.getText()));
+       connectionData.setTime_out(Integer.parseInt(jTextOutTime.getText()));
+       
+      
+       
+      
+       
        
        this.main.show(true);
        

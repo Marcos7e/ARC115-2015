@@ -10,6 +10,7 @@ import HELPERS.Emulation;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 
 
@@ -27,11 +28,12 @@ public class Translator implements Runnable {
     public Communication com ;
     public String respuestaArduino;
     public Emulation emu;
+    public JTextField translator;
     
     
     
     
-    public Translator(String line, int threadSleepTimeMillis, JButton boton, Emulation emu, Communication com){
+    public Translator(String line, int threadSleepTimeMillis, JButton boton, Emulation emu, Communication com, JTextField translator){
     this.line = line;
     this.letters = new String[line.length()];
     this.lan = new Languague();
@@ -39,6 +41,7 @@ public class Translator implements Runnable {
     this.boton = boton;
     this.emu =emu;
     this.com = com;
+    this.translator=translator;
     
     }
     
@@ -64,18 +67,21 @@ public class Translator implements Runnable {
             try {
             for (String letter : this.letters) {
                
-                    Thread.sleep(this.threadSleepTimeMillis);
-                    System.out.println(letter + "= " + lan.Alfabeto.get(letter));
+                    Thread.sleep(this.threadSleepTimeMillis);          
                     emu.onRecibeData(lan.Alfabeto.get(letter));
+                    translator.setText(letter+": "+lan.Alfabeto.get(letter));
                     com.sendData(lan.Alfabeto.get(letter));
                     respuestaArduino = com.getData();
-                    System.out.println("Arduino says: "+respuestaArduino);
+             
                 
                 }
             
              boton.setText("Mandar contenido a interfaz Braille");
              boton.setEnabled(true);
-         //    com.closeConnection();
+             com.sendData("000000");
+             translator.setText("");
+             
+      
                 
              }    
                 

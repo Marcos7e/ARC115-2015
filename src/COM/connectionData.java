@@ -11,9 +11,11 @@ package COM;
  */
 public class connectionData {
     
-    private static String port = "";
-    private static int data_rate = 0;
-    private static int out_time =0;
+    private  static String port = "";
+    private  static int data_rate = 0;
+    private  static int time_out =0;
+
+    
 
     public static String getPort() {
         return port;
@@ -31,13 +33,12 @@ public class connectionData {
         connectionData.data_rate = data_rate;
     }
 
-    public static int getOut_time() {
-        return out_time;
+public static int getTime_out() {
+        return time_out;
     }
 
-    public static void setOut_time(int out_time) {
-        connectionData.out_time = out_time;
+    public static void setTime_out(int time_out) {
+        connectionData.time_out = time_out;
     }
-
     
 }
