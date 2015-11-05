@@ -31,49 +31,18 @@ public class Translator implements Runnable {
     
     
     
-    public Translator(String line, int threadSleepTimeMillis, JButton boton, Emulation emu){
+    public Translator(String line, int threadSleepTimeMillis, JButton boton, Emulation emu, Communication com){
     this.line = line;
     this.letters = new String[line.length()];
     this.lan = new Languague();
     this.threadSleepTimeMillis = threadSleepTimeMillis;
     this.boton = boton;
     this.emu =emu;
-    
-    
-    this.com = new Communication("COM3", 9600, 1000);
-    
+    this.com = com;
     
     }
     
     
-    public void lineToBraille()
-    {
-        
-        
-        if(!this.line.isEmpty())
-        {
-           for(int i=0; i<line.length(); i++)
-           {
-               this.letters[i] =String.valueOf(line.charAt(i)).toLowerCase();
-           }
-           
-           for(int i=0; i< this.letters.length; i++)
-           {
-               try {
-                   Thread.sleep(this.threadSleepTimeMillis);
-                    System.out.println(letters[i]+"= "+ lan.Alfabeto.get(letters[i]));
-                    com.sendData(letters[i]);
-                   
-               } catch (InterruptedException ex) {
-                   System.out.println(ex.getMessage());
-               }
-              
-           }
-           
-        }
-        
-    
-    }
 
    
     @Override
@@ -82,10 +51,12 @@ public class Translator implements Runnable {
            
          if(!line.isEmpty())
         {
-           com.InicializarConexion();
+        //   com.InicializarConexion();
             
             boton.setText("Traduciendo a Braille...");
             boton.setEnabled(false);
+         
+            
            for(int i=0; i<line.length(); i++)
            {
                this.letters[i] =String.valueOf(line.charAt(i)).toLowerCase();
@@ -104,7 +75,7 @@ public class Translator implements Runnable {
             
              boton.setText("Mandar contenido a interfaz Braille");
              boton.setEnabled(true);
-             com.closeConnection();
+         //    com.closeConnection();
                 
              }    
                 

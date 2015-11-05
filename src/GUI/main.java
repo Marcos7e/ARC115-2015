@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import COM.Communication;
 import COM.connectionData;
 import HELPERS.WaitGif;
 import HELPERS.Archivos;
@@ -26,6 +27,7 @@ public class main extends javax.swing.JFrame {
     JFileChooser seleccionado = new JFileChooser();
     Archivos archivos = new Archivos();
     Emulation emu;
+    Communication com;
     
    
   
@@ -37,6 +39,8 @@ public class main extends javax.swing.JFrame {
         initComponents();
         this.emu = new Emulation(jPB1, jPB2, jPB3, jPB4, jPB5, jPB6, Color.RED, Color.GREEN);
         this.emu.setAllOff();
+        this.com = new Communication("COM3",9600, 1000);
+        this.com.InicializarConexion();
       
         
         
@@ -377,11 +381,13 @@ public class main extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         //Salir 
+        emu.setAllOff();
+        this.com.closeConnection();
         System.exit(0);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void btn_send_to_BrailleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_send_to_BrailleActionPerformed
-      Runnable r = new Translator(jTexttoBraille.getText(), 500, btn_send_to_Braille,this.emu);
+      Runnable r = new Translator(jTexttoBraille.getText(), 500, btn_send_to_Braille,this.emu,this.com);    
       new Thread(r).start();
       
       
