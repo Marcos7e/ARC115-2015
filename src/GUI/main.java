@@ -37,6 +37,7 @@ public class main extends javax.swing.JFrame {
      */
     public main() {
         initComponents();
+        setTitle("EZBraille");
         this.emu = new Emulation(jPB1, jPB2, jPB3, jPB4, jPB5, jPB6, Color.RED, Color.GREEN);
         this.emu.setAllOff();
           
@@ -323,7 +324,7 @@ public class main extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jMenuBar1.setBackground(new java.awt.Color(153, 153, 153));
+        jMenuBar1.setBackground(new java.awt.Color(204, 204, 204));
 
         jMenu1.setText("Archivo");
 
@@ -388,6 +389,16 @@ public class main extends javax.swing.JFrame {
         jMenuBar1.add(jMenu5);
 
         jMenu6.setText("Acerca de...");
+        jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu6MouseClicked(evt);
+            }
+        });
+        jMenu6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu6ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu6);
 
         setJMenuBar(jMenuBar1);
@@ -471,6 +482,15 @@ public class main extends javax.swing.JFrame {
       ci.show(true);
       this.show(false);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenu6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu6ActionPerformed
+
+    private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
+         acerca_de a=new acerca_de();
+        a.setVisible(true);
+    }//GEN-LAST:event_jMenu6MouseClicked
 
     /**
      * @param args the command line arguments
