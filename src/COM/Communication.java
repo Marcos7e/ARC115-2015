@@ -98,8 +98,8 @@ public class Communication extends Thread {
         }
         //Si no se encontró ningun puerto disponible...
         if (puertoID == null) {
-            mostrarError("No se encontro ningun puerto disponible, Asegurese que la interfaz braille este debidamente conectada al computador");
-            System.exit(ERROR);
+           // mostrarError("No se encontro ningun puerto disponible, Asegurese que la interfaz braille este debidamente conectada al computador");
+            //System.exit(ERROR);
             return;
         }
 
