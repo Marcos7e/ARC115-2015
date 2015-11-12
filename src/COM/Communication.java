@@ -5,6 +5,7 @@
  */
 package COM;
 
+import GUI.Configuracion_Inicial;
 import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
 import static java.awt.image.ImageObserver.ERROR;
@@ -73,14 +74,41 @@ public class Communication extends Thread {
       public void findPorts(JComboBox jc){
       Enumeration puertoEnum = CommPortIdentifier.getPortIdentifiers();
     
+        
+      
+      
        while (puertoEnum.hasMoreElements()) {
        CommPortIdentifier actualPuertoID = (CommPortIdentifier) puertoEnum.nextElement();
             System.out.println("Puerto Seleccionado: "+actualPuertoID.getName());
-            jc.addItem(actualPuertoID.getName());
-
+            jc.addItem(actualPuertoID.getName());          
     }
+       
+       if(jc.getItemCount()==0)
+       {
+           this.showAlertMessage("No se encontro ningun dispositivo conectado. Por favor revise la conexion de la interfaz Braille");
            
-    }
+       }
+      }
+   
+      
+      public void showAlertMessage(String msg)
+      {
+             Object[] options = {"OK"};
+          
+           int input = 0;
+           input = JOptionPane.showOptionDialog(null, "Asegurese que la interfaz este debidamente conectada ","No se encontro Interfaz",
+                   JOptionPane.WARNING_MESSAGE,
+                   JOptionPane.WARNING_MESSAGE,
+                   null,
+                   options,
+                   options[0]);
+          
+           if(input==0)
+           {
+               System.exit(0);
+           }
+          
+      }
 
     public void InicializarConexion() {
         //identificando Puertos disponibles....
