@@ -29,11 +29,12 @@ public class Translator implements Runnable {
     public String respuestaArduino;
     public Emulation emu;
     public JTextField translator;
+    public JButton control;
     
     
     
     
-    public Translator(String line, int threadSleepTimeMillis, JButton boton, Emulation emu, Communication com, JTextField translator){
+    public Translator(String line, int threadSleepTimeMillis, JButton boton,JButton Control, Emulation emu, Communication com, JTextField translator){
     this.line = line;
     this.letters = new String[line.length()];
     this.lan = new Languague();
@@ -42,6 +43,7 @@ public class Translator implements Runnable {
     this.emu =emu;
     this.com = com;
     this.translator=translator;
+    this.control = Control;
     
     }
     
@@ -58,6 +60,7 @@ public class Translator implements Runnable {
             
             boton.setText("Traduciendo a Braille...");
             boton.setEnabled(false);
+            control.setEnabled(true);
          
             
            for(int i=0; i<line.length(); i++)
@@ -77,9 +80,11 @@ public class Translator implements Runnable {
                 }
             
              boton.setText("Mandar contenido a interfaz Braille");
+             
              boton.setEnabled(true);
              com.sendData("000000");
              translator.setText("");
+             control.setEnabled(false);
              
       
                 

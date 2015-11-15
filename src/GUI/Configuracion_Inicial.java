@@ -47,10 +47,10 @@ public class Configuracion_Inicial extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jComboPort = new javax.swing.JComboBox();
-        jTextOutTime = new javax.swing.JTextField();
         JBtnAceptar = new javax.swing.JButton();
         jBtnCancel = new javax.swing.JButton();
         jComboBaud = new javax.swing.JComboBox();
+        jComboTimeOut = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -72,13 +72,6 @@ public class Configuracion_Inicial extends javax.swing.JFrame {
 
         jLabel3.setText("TimeOut(ms):");
 
-        jTextOutTime.setText("1000");
-        jTextOutTime.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextOutTimeFocusLost(evt);
-            }
-        });
-
         JBtnAceptar.setText("Aceptar");
         JBtnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,6 +88,8 @@ public class Configuracion_Inicial extends javax.swing.JFrame {
 
         jComboBaud.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "4800", "9600", "14400", "19200", "28800", "38400", "57600", "115200" }));
         jComboBaud.setSelectedIndex(1);
+
+        jComboTimeOut.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1000", "2000", "3000" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -113,9 +108,9 @@ public class Configuracion_Inicial extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBtnCancel))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jComboTimeOut, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jComboBaud, javax.swing.GroupLayout.Alignment.LEADING, 0, 150, Short.MAX_VALUE)
-                        .addComponent(jComboPort, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextOutTime, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addComponent(jComboPort, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(22, 22, 22))
         );
         jPanel2Layout.setVerticalGroup(
@@ -132,7 +127,7 @@ public class Configuracion_Inicial extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextOutTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboTimeOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBtnAceptar)
@@ -194,11 +189,11 @@ public class Configuracion_Inicial extends javax.swing.JFrame {
 
     private void JBtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnAceptarActionPerformed
 
-       if(jTextOutTime.getText()!="") 
+       if(jComboTimeOut.getSelectedItem().toString()!="") 
        {
        connectionData.setPort(jComboPort.getSelectedItem().toString());
        connectionData.setData_rate(Integer.parseInt(jComboBaud.getSelectedItem().toString()));
-       connectionData.setTime_out(Integer.parseInt(jTextOutTime.getText()));
+       connectionData.setTime_out(Integer.parseInt(jComboTimeOut.getSelectedItem().toString()));
        
       
        
@@ -216,15 +211,6 @@ public class Configuracion_Inicial extends javax.swing.JFrame {
     private void jBtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jBtnCancelActionPerformed
-
-    private void jTextOutTimeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextOutTimeFocusLost
-         if(jTextOutTime.getText().length()==0) 
-         {
-             this.JBtnAceptar.setEnabled(true);
-         }
-         else{
-         this.JBtnAceptar.setEnabled(false);}
-    }//GEN-LAST:event_jTextOutTimeFocusLost
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       Ayuda_ConfiguracionIni aci = new Ayuda_ConfiguracionIni();
@@ -280,12 +266,12 @@ public class Configuracion_Inicial extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBaud;
     private javax.swing.JComboBox jComboPort;
+    private javax.swing.JComboBox jComboTimeOut;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextOutTime;
     // End of variables declaration//GEN-END:variables
 }
