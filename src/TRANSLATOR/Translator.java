@@ -82,6 +82,7 @@ public class Translator implements Runnable {
              boton.setText("Mandar contenido a interfaz Braille");
              
              boton.setEnabled(true);
+             Thread.sleep(this.threadSleepTimeMillis);        
              com.sendData("000000");
              translator.setText("");
              control.setEnabled(false);
